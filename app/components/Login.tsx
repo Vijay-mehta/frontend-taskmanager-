@@ -1,13 +1,25 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
+interface userLogin{
+        email:string,
+        password:string
+    
+    }
+const Login:React.FC = () => {
+    const [userData,setUserData]=useState<userLogin>({ email:"",password:"" })
+  const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
+    const {name,value} =e.target;
+    setUserData((prev)=>({...prev,[name]:value})) 
+  };
 
-const Login = () => {
-  const handleChange = () => {};
+const handleSubmit=(e:FormEvent<HTMLFormElement>)=>{}
+
   return (
-    <div className=" flex justify-center h-screen  items-center ">
-      <div className="  flex border border-gray-200  space-x-3">
+    <div className=" flex justify-center  md:h-[90vh] items-center ">
+
+      <form className="  flex border border-gray-200  space-x-3" onSubmit={handleSubmit}>
         <div className=" flex flex-col gap-4  p-20 w-[500px] justify-center">
           <h2 className=" font-bold  text-3xl">Welcome back</h2>
           <p className=" text-gray-500">Please enter your details</p>
@@ -39,17 +51,17 @@ const Login = () => {
             Don't have an account? <Link href="" className="text-blue-900 underline">Sign Up</Link>
           </p>
         </div>
-        <div>
+        <div className=" hidden md:block">
           <Image
             src="/assets/images/task.png"
             alt="Description"
             width={0}
             height={0}
-            sizes="100vw"
+            sizes="110vw"
             style={{ width: "100%", height: "auto" }}
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 };
