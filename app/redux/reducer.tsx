@@ -1,12 +1,13 @@
-import { LOGIN } from "./actionType"
+import { LOGIN_REQUEST } from "./actionType"
 
 const initialState={
     users:[]
 }
 
 const userReducer=(state=initialState,action:any)=>{
+    console.log(action)
 switch(action.type){
-    // case LOGIN :return {...state,user:}
+     case LOGIN_REQUEST :return {...state,user:action.payload}
 }
 }
 

@@ -2,19 +2,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { userLogin } from "../redux/action";
 interface userLogin{
         email:string,
         password:string
     
     }
 const Login:React.FC = () => {
+  const dispatch =useDispatch()
     const [userData,setUserData]=useState<userLogin>({ email:"",password:"" })
   const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     const {name,value} =e.target;
     setUserData((prev)=>({...prev,[name]:value})) 
   };
 
-const handleSubmit=(e:FormEvent<HTMLFormElement>)=>{}
+const handleSubmit=(e:FormEvent<HTMLFormElement>)=>{
+  e.preventDefault()
+  dispatch(userLogin(userData))
+}
 
   return (
     <div className=" flex justify-center  md:h-[90vh] items-center ">
